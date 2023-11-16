@@ -28,8 +28,10 @@ class PokeDetailFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.pokemon.observe(viewLifecycleOwner) {
+            val pokeId = viewModel.pokeId.value.toString()
+
             binding.tvPokeDetailName.text = it.name.capitalize(Locale.ROOT)
-            binding.tvPokeDetailNumber.text = viewModel.pokeId.value.toString()
+            binding.tvPokeDetailNumber.text = "Kanto Pokédex: No. $pokeId"
 
             binding.ivPokeDetailSprite.load(viewModel.pokemon.value?.sprites?.other?.officialArtwork?.frontDefault)
         }
