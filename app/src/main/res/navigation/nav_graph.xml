@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/pokeListFragment">
+
+    <fragment
+            android:id="@+id/pokeListFragment"
+            android:name="com.syntax_institut.android_ta_apiwdh.ui.PokeListFragment"
+            android:label="PokeListFragment"
+            tools:layout="@layout/fragment_poke_list"/>
+    <fragment
+            android:id="@+id/pokeDetailFragment"
+            android:name="com.syntax_institut.android_ta_apiwdh.ui.PokeDetailFragment"
+            android:label="PokeDetailFragment"
+            tools:layout="@layout/fragment_poke_detail"/>
+</navigation>
