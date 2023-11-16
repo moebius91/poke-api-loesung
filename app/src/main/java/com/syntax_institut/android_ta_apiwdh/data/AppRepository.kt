@@ -8,13 +8,17 @@ import java.lang.Exception
 
 class AppRepository(private val apiService: PokeApi) {
 
-    private var _pokeList = MutableLiveData<List<Pokemon>>()
-    val pokeList: LiveData<List<Pokemon>>
+    private var _pokeList = MutableLiveData<MutableList<Pokemon>>()
+    val pokeList: LiveData<MutableList<Pokemon>>
         get() = _pokeList
 
     private var _pokemon = MutableLiveData<Pokemon>()
     val pokemon: LiveData<Pokemon>
         get() = _pokemon
+
+    private var _maxPokemon = MutableLiveData("151")
+    val maxPokemon: LiveData<String>
+        get() = _maxPokemon
 
     // Die ID wird noch einmal separat gespeichert,
     // weil das Attribut "order" aus der API nicht dem Kantopokedexindex entspricht.
@@ -28,8 +32,8 @@ class AppRepository(private val apiService: PokeApi) {
     }
 
     suspend fun getAllPokemon() {
-        val pokedex = apiService.retrofitService.getAllPokemon("151")
-        _pokeList.postValue(pokedex.results)
+        val pokedex = apiService.retrofitService.getAllPokemon(maxPokemon.value!!)
+        _pokeList.postValue(pokedex.results.toMutableList())
     }
 
     fun saveId(id: Int) {

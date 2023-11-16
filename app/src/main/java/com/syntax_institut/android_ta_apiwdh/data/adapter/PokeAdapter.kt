@@ -2,8 +2,10 @@ package com.syntax_institut.android_ta_apiwdh.data.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.syntax_institut.android_ta_apiwdh.R
 import com.syntax_institut.android_ta_apiwdh.data.model.Pokemon
 import com.syntax_institut.android_ta_apiwdh.databinding.ItemPokeListBinding
@@ -36,6 +38,9 @@ class PokeAdapter(
 
         val name = "$pokeId. ${item.name.capitalize()}"
 
+        val imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$pokeId.png"
+
+        holder.binding.ivPokeDetailImage.load(imageUrl)
         holder.binding.tvPokeListName.text = name
 
         holder.binding.cvPokeListPokemon.setOnClickListener {
@@ -44,6 +49,5 @@ class PokeAdapter(
             holder.itemView.findNavController().navigate(R.id.pokeDetailFragment)
         }
     }
-
 
 }
